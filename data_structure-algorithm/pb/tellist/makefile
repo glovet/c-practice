@@ -50,12 +50,3 @@ strip:
 clean:
 	rm -f $(addprefix $(BIN_DIR)/,$(BIN)) $(OBJ_DIR)/*.o
 
-
-sync:
-	rsync -azvc $(BIN_DIR)/*  rsync://10.133.2.206:49000/client_cgi/cgi-bin/
-
-install:
-	cp $(./bin/$(BIN)) ../qun.qq.com/cgi-bin/ 
-	cp qun.ini ../qun.qq.com/cgi-bin/ 
-
-
