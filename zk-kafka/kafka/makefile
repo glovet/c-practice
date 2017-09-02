@@ -2,8 +2,8 @@
 
 .SUFFIXES: .sh .h .c .cc .cpp
 
-CXX			= gcc
-CXXFLAGS	= -ggdb3 -Wall -Werror
+CXX	        = gcc
+CXXFLAGS	= -ggdb3 -Wall -Werror -fPIC
 CXX_MACRO	=
 
 INC_DIR		= ./inc
@@ -14,9 +14,9 @@ BIN_DIR		= ./bin
 EXAM_DIR	= ./exam
 BIN			= consumer
 
-INC			= -I$(INC_DIR) -I$(INC_DIR)/zookeeper/ -I$(INC_DIR)/librdkafka/
-# LIB			= -L$(LIB_DIR) -lrdkafka -lpthread -lm
-LIB			= -L$(LIB_DIR) -lrdkafka
+INC		= -I$(INC_DIR) -I$(INC_DIR)/zookeeper/ -I$(INC_DIR)/librdkafka/
+# LIB		= -L$(LIB_DIR) -lrdkafka -lpthread -lm
+LIB		= -L$(LIB_DIR) -lrdkafka  -rdynamic -lpthread -lcrypto -ldl -lz -lssl
 
 all: clean debug release # strip
 

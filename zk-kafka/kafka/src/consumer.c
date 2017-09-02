@@ -218,7 +218,7 @@ static void sig_usr1 (int sig) {
 }
 
 int main (int argc, char **argv) {
-  char *brokers = "localhost:9092";
+  char *brokers = "192.168.100.138:9092";
   rd_kafka_conf_t *conf;
   rd_kafka_topic_conf_t *topic_conf;
   char errstr[512];
@@ -227,10 +227,9 @@ int main (int argc, char **argv) {
   rd_kafka_resp_err_t err;
   char *group = NULL;
   rd_kafka_topic_partition_list_t *topics;
-  int is_subscription;
 
-    /* Kafka configuration */
-    conf = rd_kafka_conf_new();
+  /* Kafka configuration */
+  conf = rd_kafka_conf_new();
 
   /* Set logger */
   rd_kafka_conf_set_log_cb(conf, logger);
@@ -270,8 +269,7 @@ int main (int argc, char **argv) {
   rd_kafka_conf_set_rebalance_cb(conf, rebalance_cb);
 
   /* Create Kafka handle */
-  if (!(rk = rd_kafka_new(RD_KAFKA_CONSUMER, conf,
-                      errstr, sizeof(errstr)))) {
+  if (!(rk = rd_kafka_new(RD_KAFKA_CONSUMER, conf, errstr, sizeof(errstr)))) {
       fprintf(stderr,
               "%% Failed to create new consumer: %s\n",
               errstr);
@@ -288,7 +286,6 @@ int main (int argc, char **argv) {
   rd_kafka_poll_set_consumer(rk);
 
   topics = rd_kafka_topic_partition_list_new(1);
-  is_subscription = 1;
 
   char *topic = "test5";
   int32_t partition = -1;
@@ -296,8 +293,7 @@ int main (int argc, char **argv) {
 
   fprintf(stderr, "%% Subscribing to %d topics\n", topics->cnt);
   if ((err = rd_kafka_subscribe(rk, topics))) {
-    fprintf(stderr,
-            "%% Failed to start consuming topics: %s\n",
+    fprintf(stderr, "%% Failed to start consuming topics: %s\n",
             rd_kafka_err2str(err));
     exit(1);
   }
@@ -322,8 +318,7 @@ int main (int argc, char **argv) {
 
     err = rd_kafka_consumer_close(rk);
     if (err) {
-        fprintf(stderr, "%% Failed to close consumer: %s\n",
-                        rd_kafka_err2str(err));
+        fprintf(stderr, "%% Failed to close consumer: %s\n", rd_kafka_err2str(err));
     } else {
         fprintf(stderr, "%% Consumer closed\n");
     }
