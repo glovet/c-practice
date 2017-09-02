@@ -12,7 +12,7 @@ OBJ_DIR		= ./obj
 LIB_DIR		= ./lib
 BIN_DIR		= ./bin
 EXAM_DIR	= ./exam
-BIN			= consumer
+BIN			= producer consumer
 
 INC		= -I$(INC_DIR) -I$(INC_DIR)/zookeeper/ -I$(INC_DIR)/librdkafka/
 # LIB		= -L$(LIB_DIR) -lrdkafka -lpthread -lm
@@ -32,6 +32,9 @@ dir:
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	$(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $(INC) -c $<
+
+$(BIN_DIR)/producer:$(addprefix $(OBJ_DIR)/, producer.o)
+	$(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $^ $(LIB)
 
 $(BIN_DIR)/consumer:$(addprefix $(OBJ_DIR)/, consumer.o)
 	$(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $^ $(LIB)
