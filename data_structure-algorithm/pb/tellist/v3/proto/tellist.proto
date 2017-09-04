@@ -1,4 +1,6 @@
-package baidu.hi;
+syntax = "proto3";
+
+package ikurento.hi;
 
 message hi_tel_num_list
 {

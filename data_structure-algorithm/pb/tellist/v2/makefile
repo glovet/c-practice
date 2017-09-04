@@ -6,6 +6,8 @@ CXX			= g++
 CXXFLAGS	= -ggdb3 -Wall -Werror
 CXX_MACRO	=
 
+GPB_PROTO   = proto/tellist.proto
+
 INC_DIR		= inc
 SRC_DIR		= src
 OBJ_DIR		= obj
@@ -15,14 +17,16 @@ BIN			= store destore
 
 BASE_PATH	=
 
-INC			= -I/usr/lib64/protobuf/include/ -I$(INC_DIR)
+INC			= -I/Users/alex/bin/protobuf/include -I$(INC_DIR)
 
-LIB			= -L/usr/lib64/protobuf/lib64 -lprotobuf
+LIB			= -L/Users/alex/bin/protobuf/lib -lprotobuf
 
 all: clean debug release # strip
 
-debug release gprof: dir $(addprefix $(BIN_DIR)/,$(BIN))
+debug release gprof: dir gpb $(addprefix $(BIN_DIR)/,$(BIN))
 
+gpb:
+	protoc -I=./proto -I=/Users/alex/bin/protobuf/include --cpp_out=./src $(GPB_PROTO)
 
 #@ do not outoupt this command - ingnore its error and continue to make
 dir:

@@ -26,7 +26,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace baidu {
+namespace ikurento {
 namespace hi {
 
 // Internal implementation detail -- do not call these.
@@ -104,7 +104,7 @@ class hi_tel_num_list : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
       mutable_tel_num();
 
-  // @@protoc_insertion_point(class_scope:baidu.hi.hi_tel_num_list)
+  // @@protoc_insertion_point(class_scope:ikurento.hi.hi_tel_num_list)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -157,7 +157,7 @@ hi_tel_num_list::mutable_tel_num() {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace hi
-}  // namespace baidu
+}  // namespace ikurento
 
 #ifndef SWIG
 namespace google {

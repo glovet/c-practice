@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-void ListMsg(const ::baidu::hi::hi_tel_num_list& tel_list) {
+void ListMsg(const ::ikurento::hi::hi_tel_num_list& tel_list) {
 	int							idx;
 	unsigned long long int		sum;
 	unsigned long long int		tel_num;
@@ -21,7 +21,7 @@ void ListMsg(const ::baidu::hi::hi_tel_num_list& tel_list) {
 }
 
 int main(int argc, char* argv[]) {
-	::baidu::hi::hi_tel_num_list tel_list;
+	::ikurento::hi::hi_tel_num_list tel_list;
 
 	fstream input("./out", ios::in | ios::binary);
 	if (!tel_list.ParseFromIstream(&input)) {

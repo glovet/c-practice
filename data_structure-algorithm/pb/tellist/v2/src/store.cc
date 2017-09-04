@@ -19,7 +19,7 @@ int main(void) {
 	int								max_idx;
 	int								num;
 	PHONE_NUM_TYPE					arr[1024];
-	::baidu::hi::hi_tel_num_list	tel_list;
+	::ikurento::hi::hi_tel_num_list	tel_list;
 
 	// gen tel num array
 	num = 13;
