@@ -2,23 +2,28 @@ package main
 
 import (
 	"fmt"
-	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"os"
-	"proto3_proto"
+)
+
+import (
+	// "github.com/golang/protobuf/proto"
+	"proto2_proto_example"
 )
 
 func main() {
-	ma := &proto3_proto.MessageArray{}
+	ma := &proto2_proto_example.MessageArray{}
 	var fileName string = "../../pb_bin_v2"
 	if 2 == len(os.Args) {
 		fileName = os.Args[1]
 	}
 
 	data, _ := ioutil.ReadFile(fileName)
-	proto.Unmarshal(data, ma)
+	// proto.Unmarshal(data, ma)
+	ma.Unmarshal(data)
 
-	msg_map := ma.GetMsgMap()
+	fmt.Println(len(data))
+	msg_map := ma.MsgMap
 	fmt.Println("MessageArray.msg_map size:", len(msg_map))
 	for k, v := range msg_map {
 		fmt.Println("key:", k)

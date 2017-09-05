@@ -1,8 +1,8 @@
-syntax = "proto3";
+syntax = "proto2";
 
-package proto3_proto;
+package proto2_proto;
 
-message Message 
+message Message
 {
   enum Humour {
     UNKNOWN = 0;
@@ -11,19 +11,14 @@ message Message
     BILL_BAILEY = 3;
   }
 
-  string name = 1;
-  Humour hilarity = 2;
-  uint32 height_in_cm = 3;
-  bytes data = 4;
-  int64 result_count = 7;
-  bool true_scotsman = 8;
-  float score = 9;
+  optional string name = 1;
+  optional Humour hilarity = 2;
+  optional uint32 height_in_cm = 3;
+  optional bytes data = 4;
+  optional int64 result_count = 7;
+  optional bool true_scotsman = 8;
+  optional float score = 9;
 
   repeated uint64 key = 5[packed = true];
-}
-
-message MessageArray
-{
-   map<string, Message> msg_map = 1;
 }
 
