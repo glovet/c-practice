@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 
     printf("msg array size:%d\n", ma.ByteSize());
 
-    fstream output("../../pb_bin_v2", ios::out | ios::trunc | ios::binary);
+    fstream output("../../pb_bin", ios::out | ios::trunc | ios::binary);
     if (!ma.SerializeToOstream(&output)) {
         printf("Failed to write msg.\n");
         return -1;

@@ -16,5 +16,7 @@ gopath=~/test/golang/lib/src/github.com/gogo/protobuf/protobuf
 # gogo.proto is located in github.com/gogo/protobuf/gogoproto
 gogopath=~/test/golang/lib/src/
 # ../proto the path of msg.proto
-protoc -I=$gopath:$gogopath:../gogo_proto/ --gogo_out=src/proto2_proto msg.proto
-protoc -I=$gopath:$gogopath:../gogo_proto/ --gogo_out=Mmsg.proto="proto2_proto":src/proto2_proto_example msg_array.proto
+# protoc -I=$gopath:$gogopath:../gogo_proto/ --gogo_out=src/proto2_proto msg.proto
+# protoc -I=$gopath:$gogopath:../gogo_proto/ --gogo_out=Mmsg.proto="proto2_proto":src/proto2_proto_example msg_array.proto
+protoc -I=$gopath:$gogopath:../gogo_proto/ --gogofast_out=src/proto2_proto msg.proto
+protoc -I=$gopath:$gogopath:../gogo_proto/ --gogofast_out=Mmsg.proto="proto2_proto":src/proto2_proto_example msg_array.proto

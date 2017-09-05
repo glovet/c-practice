@@ -12,7 +12,7 @@ decoder:decoder.go
 	-go build -race -o $@ $<
 
 clean:
-	rm src/proto2_proto/msg.pb.go
-	rm src/proto2_proto_example/msg_array.pb.go
-	rm decoder encoder
+	-rm src/proto2_proto/msg.pb.go
+	-rm src/proto2_proto_example/msg_array.pb.go
+	-rm decoder encoder
 

@@ -37,5 +37,5 @@ func main() {
 	}
 	//fmt.Println("data:", string(data))
 
-	ioutil.WriteFile("../../pb_bin_v2", data, 0666)
+	ioutil.WriteFile("../../pb_bin", data, 0666)
 }

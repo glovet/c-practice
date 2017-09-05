@@ -13,7 +13,7 @@ import (
 
 func main() {
 	ma := &proto2_proto_example.MessageArray{}
-	var fileName string = "../../pb_bin_v2"
+	var fileName string = "../../pb_bin"
 	if 2 == len(os.Args) {
 		fileName = os.Args[1]
 	}

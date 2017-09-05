@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    const char* file = "../../pb_bin_v2";
+    const char* file = "../../pb_bin";
     if (argc == 2) {
         // fprintf(stderr, "Pls input protobuf sirialized file!!\n");
         // return -1;

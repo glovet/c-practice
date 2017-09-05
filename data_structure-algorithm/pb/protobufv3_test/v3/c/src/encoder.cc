@@ -1,4 +1,5 @@
 #include "msg.pb.h"
+#include "msg_array.pb.h"
 #include <fstream>
 #include <string>
 #include <stdio.h>
@@ -7,7 +8,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    ::proto3_proto::MessageArray ma;
+    ::proto3_proto_example::MessageArray ma;
     ::google::protobuf::Map< ::std::string, ::proto3_proto::Message>*
         msg_map_map = ma.mutable_msg_map();
 
@@ -33,7 +34,7 @@ int main(int argc, char** argv)
 
     printf("msg array size:%d\n", ma.ByteSize());
 
-    fstream output("../pb_bin_v3", ios::out | ios::trunc | ios::binary);
+    fstream output("../../pb_bin", ios::out | ios::trunc | ios::binary);
     if (!ma.SerializeToOstream(&output)) {
         printf("Failed to write msg.\n");
         return -1;

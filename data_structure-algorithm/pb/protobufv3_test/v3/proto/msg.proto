@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto3_proto;
 
-message Message 
+message Message
 {
   enum Humour {
     UNKNOWN = 0;
@@ -20,10 +20,5 @@ message Message
   float score = 9;
 
   repeated uint64 key = 5[packed = true];
-}
-
-message MessageArray
-{
-   map<string, Message> msg_map = 1;
 }
 
