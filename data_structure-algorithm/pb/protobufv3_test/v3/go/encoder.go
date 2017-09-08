@@ -17,7 +17,7 @@ func main() {
 	for idx := 0; idx < 10; idx++ {
 		var msg proto3_proto.Message
 		msg.Name = fmt.Sprintf("%s%d", "hello", idx)
-		msg.Hilarity = proto3_proto.Message_PUNS
+		msg.Hilarity = proto3_proto.PUNS
 		msg.HeightInCm = 123456
 		msg.Data = []byte("world")
 		msg.ResultCount = 123456
