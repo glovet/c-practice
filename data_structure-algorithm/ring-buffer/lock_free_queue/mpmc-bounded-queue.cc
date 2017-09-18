@@ -53,7 +53,7 @@ void* push(void* arg)
     uint64_t end_sec = get_sec();
 
     size_t num = push_num;
-    printf("push thread %d, push num %d, use time %f sec\n", thread_id, num, (end_sec - start_sec) / 1000000.0f);
+    printf("push thread %d, push num %zu, use time %f sec\n", thread_id, num, (end_sec - start_sec) / 1000000.0f);
     flag = true;
 }
 
@@ -80,7 +80,7 @@ void* pop(void* arg)
     uint64_t end_sec = get_sec();
 
     size_t num = push_num;
-    printf("pop thread %d, pop num %d, use time %f sec\n", thread_id, num, (end_sec - start_sec) / 1000000.0f);
+    printf("pop thread %d, pop num %zu, use time %f sec\n", thread_id, num, (end_sec - start_sec) / 1000000.0f);
 }
 
 int main()
