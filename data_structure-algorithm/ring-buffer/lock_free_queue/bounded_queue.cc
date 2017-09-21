@@ -9,11 +9,10 @@
 #include <iostream>
 #include <atomic>
 
-#include "concurrentqueue.h"
+#include "bouned_queue.h"
 
 #define MAX_NUM 65500
 #define test_num 100000000
-// #define test_num 10000000
 
 std::atomic_int push_num(0);
 std::atomic_int pop_num(0);
@@ -35,7 +34,7 @@ class Test
         int v_;
 };
 
-moodycamel::ConcurrentQueue<Test*> test_queue(65536);
+BoundedBlockingQueue<Test*> test_queue(65536);
 
 void* push(void* arg)
 {
@@ -43,14 +42,12 @@ void* push(void* arg)
     uint64_t start_time = get_usec();
     while (1) {
         Test* test = new Test();
-        while (!test_queue.enqueue(test)) {
-            sched_yield();
-        }
+        test_queue.put(test);
         push_num ++;
         if (test_num <= push_num.load()) {
             break;
         }
-        if (test_queue.size_approx() > MAX_NUM) {
+        if (test_queue.size() > MAX_NUM) {
             sched_yield();
             continue;
         }
@@ -61,6 +58,8 @@ void* push(void* arg)
     printf("push thread %d, push num %zu, use time %f sec\n",
             thread_id, num, (end_time - start_time) / 1000000.0f);
     flag = true;
+
+    return nullptr;
 }
 
 void* pop(void* arg)
@@ -68,11 +67,7 @@ void* pop(void* arg)
     int thread_id = *(int*)(arg);
     uint64_t start_time = get_usec();
     while (1) {
-        Test* test = NULL;
-        if (!test_queue.try_dequeue(test)) {
-            sched_yield();
-            continue;
-        }
+        Test* test = test_queue.take();
         delete test;
         pop_num++;
         if (test_num <= pop_num.load()) {
@@ -84,6 +79,8 @@ void* pop(void* arg)
     size_t num = push_num;
     printf("pop thread %d, pop num %zu, use time %f sec\n",
                 thread_id, num, (end_time - start_time) / 1000000.0f);
+
+    return nullptr;
 }
 
 int main()
