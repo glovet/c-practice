@@ -489,23 +489,23 @@ n4 timer_loop(vp timer_ptr)
         if (IS_GT(node->trig, timer->clock)) {
             break;
         }
-		prev = (lisk_timer_node_p)(list_prev_elem(node));
-		ret = node->run(timer, PTR_2_NUM(node), node->arg);
-		if (IS_EQ(ret, -3) || IS_EQ(node->type, ETIMER_ONCE)) {
-			timer_del_node(timer, list, node);
-		} else {
-			node->trig = timer->clock + node->expire;
-			ret = timer_ins_node(timer, node, flag, nil);
-			if (IS_NZR(ret))	{
-				// it will not happen if lisk fails
-				// to insert this timer node.
-				// DEALLOC(node);
-				LISK_LOG_ERROR("timer_ins_node(timer = %p, node = %p) = %d",
-							timer, node, ret);
-			}
-		}
+        prev = (lisk_timer_node_p)(list_prev_elem(node));
+        ret = node->run(timer, PTR_2_NUM(node), node->arg);
+        if (IS_EQ(ret, -3) || IS_EQ(node->type, ETIMER_ONCE)) {
+        	timer_del_node(timer, list, node);
+        } else {
+        	node->trig = timer->clock + node->expire;
+        	ret = timer_ins_node(timer, node, flag, nil);
+        	if (IS_NZR(ret))	{
+        		// it will not happen if lisk fails
+        		// to insert this timer node.
+        		// DEALLOC(node);
+        		LISK_LOG_ERROR("timer_ins_node(timer = %p, node = %p) = %d",
+        					timer, node, ret);
+        	}
+        }
 
-		node = prev;
+        node = prev;
 	LIST_FOR_EACH_END
 
 	RET_INT(0, nil_str);
